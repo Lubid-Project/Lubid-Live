@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: lubid-live
+  data:
+    mongodb:
+      database: lubid_live_db
+      port : 27017
+      host : 116.32.208.215
+      auto-index-creation: true
+      uri: mongodb://116.32.208.215:27017/lubidlive
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lubid_live
+    username: root
+    password: 12345678 #home
+  thymeleaf:
+    cache: false
+server:
+  port: 7007
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://116.32.208.215:8761/eureka

@@ -1,0 +1,34 @@
+server:
+  port: 7007
+
+spring:
+  data:
+    mongodb:
+      database: lubid_live_db
+      port: 27017
+      host: localhost
+      auto-index-creation: true
+      uri: mongodb://localhost:27017/lubid_live_db
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lubid_user
+    username: lubid
+    password: 12345678
+  thymeleaf:
+    cache: false
+
+  # spring data jpa ??
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+      # http://116.32.208.215:8761/
