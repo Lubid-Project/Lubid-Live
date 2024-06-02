@@ -3,7 +3,7 @@ spring:
     name: lubid-live
   data:
     mongodb:
-      database: lubid_live_db
+      database: lubidlive
       port : 27017
       host : 116.32.208.215
       auto-index-creation: true

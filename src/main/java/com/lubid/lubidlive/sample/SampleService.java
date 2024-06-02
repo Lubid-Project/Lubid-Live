@@ -60,13 +60,22 @@ public class SampleService {
 
         if(roomModel != null){
             log.info("send message : " + chatModel.getMsg());
-            chatModel.setCreateAt(LocalDateTime.now());
             return chatModelRepository.save(chatModel);
         }else{
             log.info("not found room : " + chatModel.getMsg());
             return null;
         }
 
+    }
+
+    /**
+     * 방 제작
+     *
+     * */
+    public Mono<SampleRoomModel> makeRoom(SampleRoomModel room){
+
+
+        return roomRepository.save(room);
     }
 
 }

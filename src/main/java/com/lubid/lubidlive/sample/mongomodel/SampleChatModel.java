@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@Document(collation = "sampleChatModel")
+@Document(collection = "sampleChatModel")
 public class SampleChatModel {
 
     @Id
@@ -19,7 +19,7 @@ public class SampleChatModel {
     private String receiver;
     private String profile;
     private int roomNum;
-    private LocalDateTime createAt;
+    //private LocalDateTime createAt;
 
 
 }
