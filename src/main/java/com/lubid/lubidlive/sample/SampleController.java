@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping(value = "/lubid-live/auth/sample")
@@ -38,6 +40,17 @@ public class SampleController {
                 .mapNotNull(data -> ServerSentEvent
                         .builder(data)
                         .event("message")
+                        .build());
+    }
+
+    @GetMapping(value = "live/test", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<ServerSentEvent<String>> requestSseTest() {
+        log.info("sse test start");
+        return Flux.interval(Duration.ofSeconds(1))
+                .map(sequence -> ServerSentEvent.<String>builder()
+                        .id(String.valueOf(sequence))
+                        .event("message")
+                        .data("Sample Event - " + sequence)
                         .build());
     }
 

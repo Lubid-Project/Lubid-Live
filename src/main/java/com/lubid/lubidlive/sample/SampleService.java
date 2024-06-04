@@ -39,7 +39,7 @@ public class SampleService {
      * */
     public Flux<ResponseEntity<SampleChatModel>> requestRoom(int roomNum){
         Query query = new Query(Criteria.where("roomNum").is(roomNum));
-
+        log.info("requestRoom");
         ReactiveFindOperation.TerminatingFind<SampleChatModel> find = reactiveMongoTemplate
                 .query(SampleChatModel.class).matching(query);
 
