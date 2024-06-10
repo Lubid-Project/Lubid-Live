@@ -15,6 +15,11 @@ spring:
     password: 12345678 #home
   thymeleaf:
     cache: false
+  rsocket:
+    server:
+      port: 707
+      transport: websocket
+      mapping-path: /rsocket
 server:
   port: 7007
 

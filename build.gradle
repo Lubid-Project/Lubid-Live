@@ -43,7 +43,10 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-
+    // rsocket
+    implementation 'org.springframework.boot:spring-boot-starter-rsocket'
+    implementation 'io.rsocket:rsocket-core'
+    implementation 'io.rsocket:rsocket-transport-netty'
     /**
      * 나중에 적용시킬 라이브러리
      * */

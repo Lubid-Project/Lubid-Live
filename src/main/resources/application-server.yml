@@ -16,7 +16,11 @@ spring:
     password: 12345678
   thymeleaf:
     cache: false
-
+  rsocket:
+    server:
+      port: 707
+      transport: websocket
+      mapping-path: /rsocket
   # spring data jpa ??
   jpa:
     database-platform: org.hibernate.dialect.MySQL57Dialect

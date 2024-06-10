@@ -39,13 +39,19 @@ public class SampleService {
      * */
     public Flux<ResponseEntity<SampleChatModel>> requestRoom(int roomNum){
         Query query = new Query(Criteria.where("roomNum").is(roomNum));
-        log.info("requestRoom");
+        log.info("requestRoom : " + roomNum);
         ReactiveFindOperation.TerminatingFind<SampleChatModel> find = reactiveMongoTemplate
                 .query(SampleChatModel.class).matching(query);
 
         return find.tail()
+                .doOnSubscribe(subscription -> log.info("Subscription started"))
+                .doOnNext(chatModel -> log.info("Received chat model: " + chatModel))
                 .map(chatModel -> new ResponseEntity<>(chatModel, HttpStatus.OK))
-                .switchIfEmpty(Mono.defer(()->Mono.just(new ResponseEntity<>(null,HttpStatus.BAD_REQUEST))));
+                .doOnComplete(() -> log.info("Stream completed"))
+                .switchIfEmpty(Mono.defer(() -> {
+                    log.info("No chat models found, returning BAD_REQUEST");
+                    return Mono.just(new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+                }));
     }
 
 
@@ -70,11 +76,9 @@ public class SampleService {
 
     /**
      * 방 제작
-     *
+     * 방을 만들어서 저장한다.
      * */
     public Mono<SampleRoomModel> makeRoom(SampleRoomModel room){
-
-
         return roomRepository.save(room);
     }
 
