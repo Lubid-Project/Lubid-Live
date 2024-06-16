@@ -60,8 +60,6 @@ public class SampleController {
                         .build());
     }
 
-
-
     // 아래 코드부터는 sse 방식이 아닌 webSocket 방식 입니다.
 
     /**
